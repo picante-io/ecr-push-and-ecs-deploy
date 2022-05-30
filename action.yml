@@ -21,6 +21,12 @@ inputs:
   ecs-service:
     description: 'ECS service name'
     required: true
+  github-user:
+    description: 'github user name'
+    required: true
+  github-token:
+    description: 'github access token'
+    required: true
 runs:
   using: "composite"
   steps: 
