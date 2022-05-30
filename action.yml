@@ -27,7 +27,7 @@ runs:
     - name: Build, tag, push to AWS ECR
       id: build
       run: |
-        docker build -t ${{ inputs.ecr-registry }}/${{ inputs.ecr-repository }}:${{ inputs.image-tag }} .
+        docker build -t ${{ inputs.ecr-registry }}/${{ inputs.ecr-repository }}:${{ inputs.image-tag }} . --build-arg githubUser=${{inputs.github-user}} --build-arg  githubToken=${{inputs.github-token}}
         docker push ${{ inputs.ecr-registry }}/${{ inputs.ecr-repository }}:${{ inputs.image-tag }}
         echo "::set-output name=image::${{ inputs.ecr-registry }}/${{ inputs.ecr-repository }}:${{ inputs.image-tag }}"
       shell: bash
