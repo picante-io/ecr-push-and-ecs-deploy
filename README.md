@@ -30,11 +30,13 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and redeploy
-        uses: jaroldwong/ecr-push-and-ecs-deploy@v1.1
-        with:
-          ecr-registry: ${{ steps.login-ecr.outputs.registry }}
-          ecr-repository: 'Repository name'
-          ecs-cluster: 'ECS Cluster name'
-          ecs-service: 'Service name'
+            - name: Build and redeploy
+              uses: picante-io/ecr-push-and-ecs-deploy@v1.2
+              with:
+                  ecr-registry: ${{ steps.login-ecr.outputs.registry }}
+                  ecr-repository: "picante-dev-erc"
+                  ecs-cluster: "picante-ecs-dev"
+                  ecs-service: "picante-dev-task_definition"
+                  github-user: ${{ secrets._GITHUB_USER }}
+                  github-token: ${{ secrets._GITHUB_TOKEN }}
 ```
